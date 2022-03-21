@@ -1,0 +1,23 @@
+.leaflet-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+#locate-user-icon-container {
+    position: absolute;
+    bottom: 55px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.nav-icon {
+    width: 70px;
+    height: 70px;
+}
+
+#confirm-target-icon-container {
+    position: absolute;
+    bottom: 135px;
+    right: 20px;
+    z-index: 10000;
+}

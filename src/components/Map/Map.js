@@ -114,11 +114,11 @@ function Map() {
                 subdomains={['mt1','mt2','mt3']}
             />
 
-            <ZoomToViewAll map={map}/>
-
             <MarkAvailableArea/>
 
             <LocationMarker/>
+
+            <ZoomToViewAll map={map}/>
 
             {position !== null &&
                 <Marker position={position} icon={GetIcon(20, "userposition")}/>

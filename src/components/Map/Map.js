@@ -28,7 +28,7 @@ export function GetIcon(iconSize, iconType) {
 }
 
 function LocationMarker() {
-    const [position, setPosition] = useState(center)
+    const [position, setPosition] = useState(null)
 
     const map = useMapEvents({
         move() {

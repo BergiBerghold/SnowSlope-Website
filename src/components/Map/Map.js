@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './map.css';
 import {MapContainer, Marker, Polygon, TileLayer, useMapEvents} from "react-leaflet";
 import L from "leaflet";
@@ -67,10 +67,15 @@ function MarkAvailableArea() {
         }
     })
 
-    if (currentZoom < 13) {
+    if (currentZoom < 12) {
         return(
             <Polygon
-                pathOptions={{fillColor: 'red', stroke: 'blue'}}
+                pathOptions={{
+                    color: 'white',
+                    opacity: 0.9,
+                    fillColor: 'green',
+                    fillOpacity: 0.3
+                }}
                 positions={polyline_coords()}
             />
         )
@@ -89,9 +94,11 @@ export function CenterOnPosition(map, setPosition) {
 }
 
 function ZoomToViewAll(map) {
-    if (map.map !== null) {
-        map.map.fitBounds(L.polyline(polyline_coords()).getBounds());
-    }
+    useEffect(() => {
+        if (map.map !== null) {
+            map.map.fitBounds(L.polyline(polyline_coords()).getBounds());
+        }
+    }, [map]);
     return null
 }
 
@@ -107,11 +114,11 @@ function Map() {
                 subdomains={['mt1','mt2','mt3']}
             />
 
-            <MarkAvailableArea/>
-
             <ZoomToViewAll map={map}/>
 
-            <LocationMarker />
+            <MarkAvailableArea/>
+
+            <LocationMarker/>
 
             {position !== null &&
                 <Marker position={position} icon={GetIcon(20, "userposition")}/>

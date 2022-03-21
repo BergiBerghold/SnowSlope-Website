@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import './map.css';
-import {MapContainer, Marker, Polygon, Polyline, TileLayer, useMap, useMapEvents} from "react-leaflet";
+import {MapContainer, Marker, Polygon, TileLayer, useMapEvents} from "react-leaflet";
 import L from "leaflet";
 import {Link} from "react-router-dom";
 import locate_user_icon from "../../static/icons/locate_user.png"
 import confirm_target_icon from "../../static/icons/confirm_target.png"
-import polyline from "./polyline"
-
-const center = [47.272060764777954, 12.758029837123667]
+import polyline_coords from "./polyline_coords"
 
 export function GetIcon(iconSize, iconType) {
     let _iconUrl;
@@ -60,6 +58,29 @@ function ConfirmTarget() {
 
 }
 
+function MarkAvailableArea() {
+    const [currentZoom, setCurrentZoom] = useState(null)
+
+    const map = useMapEvents({
+        zoomend() {
+            setCurrentZoom(map.getZoom())
+        }
+    })
+
+    if (currentZoom < 13) {
+        return(
+            <Polygon
+                pathOptions={{fillColor: 'red', stroke: 'blue'}}
+                positions={polyline_coords()}
+            />
+        )
+    } else {
+        return null
+    }
+
+
+}
+
 export function CenterOnPosition(map, setPosition) {
     map.locate().on("locationfound", function (e) {
         map.flyTo(e.latlng, map.getZoom());
@@ -67,24 +88,28 @@ export function CenterOnPosition(map, setPosition) {
     });
 }
 
+function ZoomToViewAll(map) {
+    if (map.map !== null) {
+        map.map.fitBounds(L.polyline(polyline_coords()).getBounds());
+    }
+    return null
+}
+
 function Map() {
     const [map, setMap] = useState(null);
     const [position, setPosition] = useState(null)
 
     return (
-        <MapContainer center={center} zoom={13} whenCreated={setMap}>
+        <MapContainer whenCreated={setMap}>
 
             <TileLayer
                 url="https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
                 subdomains={['mt1','mt2','mt3']}
             />
 
-            {/*TODO Avaliable Area layer*/}
+            <MarkAvailableArea/>
 
-            <Polygon
-                pathOptions={{ fillColor: 'red', stroke: false}}
-                positions={polyline()}
-            />
+            <ZoomToViewAll map={map}/>
 
             <LocationMarker />
 

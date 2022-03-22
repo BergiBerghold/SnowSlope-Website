@@ -32,7 +32,7 @@ function Loading() {
         if (data){
             handleClick();
         }
-    }, []);
+    }, );
 
     if (data){
         return (

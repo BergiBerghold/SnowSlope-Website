@@ -86,6 +86,8 @@ function MarkAvailableArea() {
 
 }
 
+
+// TODO Center on Position retriggers zoom to all
 export function CenterOnPosition(map, setPosition) {
     map.locate().on("locationfound", function (e) {
         map.flyTo(e.latlng, map.getZoom());

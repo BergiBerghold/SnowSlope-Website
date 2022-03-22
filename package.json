@@ -40,5 +40,8 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.7.9"
+  },
+  "engines": {
+  "node": "17.7.0"
   }
 }

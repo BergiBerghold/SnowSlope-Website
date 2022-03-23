@@ -55,6 +55,7 @@ jobs:
       - name: unzip artifact for deployment
         run: |
           unzip release.zip
+          rm release.zip
           ls
 
       - name: print debug

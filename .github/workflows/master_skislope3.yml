@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_PACKAGE_PATH: ./build
+  AZURE_WEBAPP_PACKAGE_PATH: build
 
 jobs:
   build:
@@ -59,7 +59,9 @@ jobs:
           ls
 
       - name: print debug
-        run: ls
+        run: |
+          ls
+          ls build
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp

@@ -63,6 +63,10 @@ jobs:
           ls
           ls build
 
+      - name: add process.json
+        run: |
+          echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -70,4 +74,4 @@ jobs:
           app-name: 'skislope3'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_15476CA4B960452C9CC535F7FBB9E6EE }}
-          package: .
+          package: ./build

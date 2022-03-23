@@ -9,6 +9,9 @@ on:
       - master
   workflow_dispatch:
 
+env:
+  AZURE_WEBAPP_PACKAGE_PATH: ./build
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -65,4 +68,4 @@ jobs:
           app-name: 'skislope3'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_15476CA4B960452C9CC535F7FBB9E6EE }}
-          package: './build'
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

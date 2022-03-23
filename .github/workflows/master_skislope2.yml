@@ -27,7 +27,7 @@ jobs:
           CI='' npm run build --if-present --passWithNoTests
           
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -rw
+        run: zip -r release.zip * .env .next
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2

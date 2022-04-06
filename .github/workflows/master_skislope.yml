@@ -68,6 +68,7 @@ jobs:
 
   remove-artifact:
     runs-on: ubuntu-latest
+    needs: deploy
     timeout-minutes: 10
 
     steps:

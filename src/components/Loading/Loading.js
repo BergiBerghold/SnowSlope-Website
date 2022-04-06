@@ -12,7 +12,7 @@ function Loading() {
     const [apiResponse, setApiResponse] = useState("");
 
     const handleClick = async () => {
-        const response = await fetch('http://127.0.0.1:8000/calculation_endpoint', {
+        const response = await fetch('https://skislope-api.azurewebsites.net/calculation_endpoint', {
             method: 'POST',
             mode: 'cors',
             headers: { 'Content-Type': 'application/json' },

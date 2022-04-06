@@ -21,7 +21,7 @@ function DisplayMap() {
                 />
 
                 <TileLayer
-                    url={"http://localhost:8000/" + data.resp.filename + "/{z}/{x}/{y}.png"}
+                    url={"https://skislope-api.azurewebsites.net/" + data.resp.filename + "/{z}/{x}/{y}.png"}
                     tms="true"
                     opacity="0.4"
 

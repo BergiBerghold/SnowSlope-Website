@@ -11,8 +11,11 @@ function Loading() {
 
     const [apiResponse, setApiResponse] = useState("");
 
+    const ApiUrl = 'https://skislope-api.azurewebsites.net/calculation_endpoint';
+    //const ApiUrl = 'http://localhost:8000/calculation_endpoint';
+
     const handleClick = async () => {
-        const response = await fetch('https://skislope-api.azurewebsites.net/calculation_endpoint', {
+        const response = await fetch(ApiUrl, {
             method: 'POST',
             mode: 'cors',
             headers: { 'Content-Type': 'application/json' },

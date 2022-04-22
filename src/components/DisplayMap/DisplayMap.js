@@ -1,15 +1,19 @@
 import React, {useState} from "react";
-import {MapContainer, Marker, TileLayer, useMapEvents} from "react-leaflet";
+import {ImageOverlay, MapContainer, Marker, TileLayer} from "react-leaflet";
 import locate_user_icon from "../../static/icons/locate_user.png";
 import './displayMap.css'
 import {Link, useLocation} from "react-router-dom";
 import {CenterOnPosition, GetIcon} from "../Map/Map"
+
 
 function DisplayMap() {
     const [map, setMap] = useState(null);
     const [position, setPosition] = useState(null)
     const location = useLocation();
     const data = location.state;
+
+    const ApiUrl = 'https://skislope-api.azurewebsites.net/';
+    //const ApiUrl = 'http://localhost:8000/';
 
     if (data) {
         return (
@@ -20,12 +24,9 @@ function DisplayMap() {
                     subdomains={['mt1','mt2','mt3']}
                 />
 
-                <TileLayer
-                    url={"https://skislope-api.azurewebsites.net/" + data.resp.filename + "/{z}/{x}/{y}.png"}
-                    tms="true"
-                    opacity="0.4"
-
-                    // TODO set min/max zoom here
+                <ImageOverlay
+                    url={ApiUrl + 'tiles_output/' + data.resp.return_data.filename}
+                    bounds={data.resp.return_data.image_bounds}
                 />
 
                 {position !== null &&

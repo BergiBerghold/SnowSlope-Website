@@ -9,7 +9,7 @@ class Home extends React.Component {
                 <div id="background-transparency-home">
                     <div className="center-home">
                         <h1>
-                            Welcome to SkiSlope
+                            Welcome to SnowSlope
                         </h1>
                     </div>
 

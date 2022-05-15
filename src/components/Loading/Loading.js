@@ -11,7 +11,7 @@ function Loading() {
 
     const [apiResponse, setApiResponse] = useState("");
 
-    const ApiUrl = 'http://18.185.21.213/calculation_endpoint';
+    const ApiUrl = 'https://18.185.21.213/calculation_endpoint';
     //const ApiUrl = 'http://localhost:8000/calculation_endpoint';
 
     const handleClick = async () => {

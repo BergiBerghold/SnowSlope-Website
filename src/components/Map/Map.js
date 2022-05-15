@@ -91,7 +91,7 @@ function MarkAvailableArea() {
 export function CenterOnPosition(map, setPosition) {
     map.locate().on("locationfound", function (e) {
         map.flyTo(e.latlng, map.getZoom());
-        setPosition([e.latlng.lat, e.latlng.lng])
+        setPosition([e.latlng.lat, e.latlng.lng]);
     });
 }
 

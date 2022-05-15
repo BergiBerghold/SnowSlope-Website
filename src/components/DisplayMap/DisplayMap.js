@@ -12,7 +12,7 @@ function DisplayMap() {
     const location = useLocation();
     const data = location.state;
 
-    const ApiUrl = 'https://skislope-api.azurewebsites.net/';
+    const ApiUrl = 'http://18.185.21.213/';
     //const ApiUrl = 'http://localhost:8000/';
 
     if (data) {
